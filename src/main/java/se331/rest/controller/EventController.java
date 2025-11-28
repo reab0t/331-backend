@@ -1,5 +1,6 @@
 package se331.rest.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,14 +8,16 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import se331.rest.entity.Event;
 import se331.rest.service.EventService;
-
-import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
 public class EventController {
     final EventService eventService;
+    
+    @Autowired
+    public EventController(EventService eventService) {
+        this.eventService = eventService;
+    }
     @GetMapping("/events")
     public ResponseEntity<?> getEventLists(@RequestParam(value = "_limit", required = false) Integer perPage,
                                           @RequestParam(value = "_page", required = false) Integer page) {

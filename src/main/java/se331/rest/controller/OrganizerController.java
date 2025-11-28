@@ -8,13 +8,16 @@ import org.springframework.web.server.ResponseStatusException;
 import se331.rest.entity.Organizer;
 import se331.rest.service.OrganizerService;
 
-import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
 public class OrganizerController {
     final OrganizerService organizerService;
+    
+    public OrganizerController(OrganizerService organizerService) {
+        this.organizerService = organizerService;
+    }
     
     @GetMapping("/organizers")
     public ResponseEntity<?> getOrganizerLists(@RequestParam(value = "_limit", required = false) Integer perPage,

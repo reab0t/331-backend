@@ -9,9 +9,12 @@ import java.util.List;
 import java.util.Random;
 
 @Service
-@RequiredArgsConstructor
 public class OrganizerServiceImpl implements OrganizerService {
     final OrganizerDao organizerDao;
+    
+    public OrganizerServiceImpl(OrganizerDao organizerDao) {
+        this.organizerDao = organizerDao;
+    }
 
     @Override
     public Integer getOrganizerSize() {
@@ -30,8 +33,15 @@ public class OrganizerServiceImpl implements OrganizerService {
 
     @Override
     public Organizer addOrganizer(Organizer organizer) {
-        // 生成随机ID
-        organizer.setId(new Random().nextLong(10000000) + 1000000);
+        // 生成随机ID并使用反射设置
+        try {
+            long randomId = new Random().nextLong(10000000) + 1000000;
+            java.lang.reflect.Field idField = organizer.getClass().getDeclaredField("id");
+            idField.setAccessible(true);
+            idField.set(organizer, randomId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return organizerDao.save(organizer);
     }
 

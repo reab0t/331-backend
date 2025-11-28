@@ -16,35 +16,11 @@ public class OrganizerDaoImpl implements OrganizerDao {
         organizerList = new ArrayList<>();
         
         // 添加一些样本数据
-        organizerList.add(Organizer.builder()
-                .id(1L)
-                .organizationName("Tech Gurus")
-                .address("123 Tech Avenue, Bangkok")
-                .build());
-        
-        organizerList.add(Organizer.builder()
-                .id(2L)
-                .organizationName("Melody Makers")
-                .address("456 Music Street, Chiang Mai")
-                .build());
-        
-        organizerList.add(Organizer.builder()
-                .id(3L)
-                .organizationName("Inner Peace Yoga")
-                .address("789 Wellness Road, Phuket")
-                .build());
-        
-        organizerList.add(Organizer.builder()
-                .id(4L)
-                .organizationName("Artistic Visions")
-                .address("101 Art Gallery, Pattaya")
-                .build());
-        
-        organizerList.add(Organizer.builder()
-                .id(5L)
-                .organizationName("Community Farmers Association")
-                .address("202 Countryside Lane, Korat")
-                .build());
+        organizerList.add(new Organizer(1L, "Tech Gurus", "123 Tech Avenue, Bangkok"));
+        organizerList.add(new Organizer(2L, "Melody Makers", "456 Music Street, Chiang Mai"));
+        organizerList.add(new Organizer(3L, "Inner Peace Yoga", "789 Wellness Road, Phuket"));
+        organizerList.add(new Organizer(4L, "Artistic Visions", "101 Art Gallery, Pattaya"));
+        organizerList.add(new Organizer(5L, "Community Farmers Association", "202 Countryside Lane, Korat"));
     }
 
     @Override
