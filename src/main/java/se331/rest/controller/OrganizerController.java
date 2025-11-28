@@ -1,12 +1,12 @@
-package se331.lab.rest.controller;
+package se331.rest.controller;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import se331.lab.rest.entity.Organizer;
-import se331.lab.service.OrganizerService;
+import se331.rest.entity.Organizer;
+import se331.rest.service.OrganizerService;
 
 import lombok.RequiredArgsConstructor;
 import java.util.List;

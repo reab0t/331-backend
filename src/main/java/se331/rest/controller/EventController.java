@@ -1,12 +1,12 @@
-package se331.lab.rest.controller;
+package se331.rest.controller;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import se331.lab.rest.entity.Event;
-import se331.lab.service.EventService;
+import se331.rest.entity.Event;
+import se331.rest.service.EventService;
 
 import lombok.RequiredArgsConstructor;
 import java.util.List;

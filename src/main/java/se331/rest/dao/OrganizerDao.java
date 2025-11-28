@@ -1,6 +1,6 @@
-package se331.lab.dao;
+package se331.rest.dao;
 
-import se331.lab.rest.entity.Organizer;
+import se331.rest.entity.Organizer;
 
 import java.util.List;
 
