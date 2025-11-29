@@ -11,6 +11,7 @@ import se331.rest.service.EventService;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class EventController {
     final EventService eventService;
     
