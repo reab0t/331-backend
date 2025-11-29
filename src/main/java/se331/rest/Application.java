@@ -16,9 +16,13 @@ public class Application {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(@NonNull CorsRegistry registry) {
-                registry.addMapping("/**")
+                registry.addMapping("/api/**")
                 .allowedOrigins("http://localhost:5173")
-                .exposedHeaders("x-total-count");
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("*")
+                .exposedHeaders("x-total-count")
+                .allowCredentials(true)
+                .maxAge(3600);
             }
         };
     }

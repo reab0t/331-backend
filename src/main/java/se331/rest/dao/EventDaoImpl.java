@@ -1,6 +1,9 @@
 package se331.rest.dao;
 
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 import se331.rest.entity.Event;
 
@@ -166,11 +169,11 @@ public class EventDaoImpl implements EventDao {
     }
 
     @Override
-    public List<Event> getEvents(Integer pageSize, Integer page) {
+    public Page<Event> getEvents(Integer pageSize, Integer page) {
         pageSize = pageSize == null ? eventList.size() : pageSize;
         page = page == null ? 1 : page;
         int firstIndex = (page - 1) * pageSize;
-        return eventList.subList(firstIndex, Math.min(firstIndex + pageSize, eventList.size()));
+        return new PageImpl<Event>(eventList.subList(firstIndex, Math.min(firstIndex + pageSize, eventList.size())), PageRequest.of(page - 1, pageSize), eventList.size());
     }
 
     @Override
@@ -194,6 +197,18 @@ public class EventDaoImpl implements EventDao {
 
     @Override
     public Event save(Event event) {
+        if (!eventList.isEmpty()) {
+            try {
+                // 获取最后一个事件的ID并加1
+                Event lastEvent = eventList.get(eventList.size() - 1);
+                java.lang.reflect.Field idField = Event.class.getDeclaredField("id");
+                idField.setAccessible(true);
+                Long lastId = (Long) idField.get(lastEvent);
+                idField.set(event, lastId + 1);
+            } catch (Exception e) {
+                // 如果获取ID失败，不处理异常
+            }
+        }
         eventList.add(event);
         return event;
     }
