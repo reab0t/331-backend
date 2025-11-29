@@ -14,7 +14,7 @@ spring:
     password: "#Jlnmg200413"
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
     show-sql: true
     generate-ddl: true
     properties:

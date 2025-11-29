@@ -1,47 +1,28 @@
 package se331.rest.entity;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Builder
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Organizer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Exclude
     Long id;
-    String organizationName;
-    String address;
+    String name;
     
-    // 手动添加构造函数
-    public Organizer() {
-    }
-    
-    public Organizer(Long id, String organizationName, String address) {
-        this.id = id;
-        this.organizationName = organizationName;
-        this.address = address;
-    }
-    
-    // 手动添加getter方法
-    public Long getId() {
-        return id;
-    }
-    
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-    public String getOrganizationName() {
-        return organizationName;
-    }
-    
-    public void setOrganizationName(String organizationName) {
-        this.organizationName = organizationName;
-    }
-    
-    public String getAddress() {
-        return address;
-    }
-    
-    public void setAddress(String address) {
-        this.address = address;
-    }
+    @OneToMany(mappedBy = "organizer", fetch = FetchType.LAZY)
+    @Builder.Default
+    List<Event> ownEvents = new ArrayList<>();
 }

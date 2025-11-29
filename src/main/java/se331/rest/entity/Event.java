@@ -7,6 +7,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Builder
 @Entity
@@ -25,5 +28,11 @@ public class Event {
     String date;
     String time;
     Boolean petAllowed;
-    String organizer;
+    
+    @ManyToOne
+    Organizer organizer;
+    
+    @ManyToMany
+    @Builder.Default
+    List<Participant> participants = new ArrayList<>();
 }
