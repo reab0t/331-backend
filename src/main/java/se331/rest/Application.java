@@ -16,12 +16,20 @@ public class Application {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(@NonNull CorsRegistry registry) {
-                registry.addMapping("/api/**")
-                .allowedOrigins("http://localhost:5173")
+                // 修改为允许所有来源，解决跨域问题
+                registry.addMapping("/organizers")
+                .allowedOrigins("*")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .exposedHeaders("x-total-count")
-                .allowCredentials(true)
+                .maxAge(3600);
+                
+                // 修改为允许所有来源，解决跨域问题
+                registry.addMapping("/api/**")
+                .allowedOrigins("*")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("*")
+                .exposedHeaders("x-total-count")
                 .maxAge(3600);
             }
         };

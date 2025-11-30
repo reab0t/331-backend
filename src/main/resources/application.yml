@@ -4,9 +4,6 @@ server:
 spring:
   application:
     name: 331-backend
-  profiles:
-    active:
-      - db
   datasource:
     url: jdbc:mysql://localhost:3307/selabdb?createDatabaseIfNotExist=true&autoReconnect=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&useUnicode=true&allowPublicKeyRetrieval=true
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -14,7 +11,7 @@ spring:
     password: "#Jlnmg200413"
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
     generate-ddl: true
     properties:

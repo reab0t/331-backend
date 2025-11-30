@@ -1,11 +1,14 @@
 package se331.rest.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import se331.rest.entity.Organizer;
+import se331.rest.entity.Participant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +32,13 @@ public class Event {
     String time;
     Boolean petAllowed;
     
+    @Version
+    @EqualsAndHashCode.Exclude
+    @Builder.Default
+    Long version = 0L;
+    
     @ManyToOne
+    @JsonIgnore
     Organizer organizer;
     
     @ManyToMany
